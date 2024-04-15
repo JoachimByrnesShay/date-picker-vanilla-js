@@ -1,29 +1,32 @@
 import {DAYS_IN_MONTHS} from "./constants.js";
 
-function getAnyDate({day, month, year}){
+export function getAnyDate({day, month, year}){
     return new Date(`${year}-${month}-${day}`)
 }
 
-function getTodayDate(){
+export function getTodayDate(){
     return new Date();
 }
 
-function displayFullDateString(date) {
+export function getFullDateString(date) {
     return date.toLocaleDateString("en-us", {year: "numeric", day: "numeric", month: "long"})
 }
 
-function getMonth(date){
+export function getMonthYearHeadline(date){
+    return date.toLocaleDateString("en-us", {year: "numeric", month: "long"}).split(RegExp(/\s/)).join(" - ");
+}
+
+export function getMonth(date){
     return date.getMonth();
 }
 
-
-function getNumDaysinMonth({month, year}){
+export function getNumDaysinMonth({month, year}){
     const mappableMonth = month + 1;
     if (mappableMonth == 2 && isLeapYear(year)) return 29;
     return DAYS_IN_MONTHS[mappableMonth];
 }
 
-function isLeapYear(year) {
+export function isLeapYear(year) {
     return (year % 4 == 0 && year % 100 != 0) || !(year % 400) 
 }   
 
